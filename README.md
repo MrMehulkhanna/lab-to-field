@@ -4,6 +4,8 @@ Plant-disease models score ~99% on lab photos but collapse on real field photos.
 honestly, closes part of it, and makes the model **say "not sure"** instead of guessing. The result is a
 phone-sized model (8.5 MB, runs offline on a CPU) with a Streamlit demo.
 
+**Live demo:** https://lab-to-field.streamlit.app
+
 *Course: Edge AI and Robotics: Data Center Vision (Thapar Institute), Group Project 1, Modules 1–5.*
 
 ![Lab vs field photos](results/figures/01_lab_vs_field.png)
