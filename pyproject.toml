@@ -1,0 +1,44 @@
+[project]
+name = "lab-to-field"
+version = "0.1.0"
+description = "Crop disease classification that holds up on real field photos, not just lab images"
+authors = [
+    { name = "MrMehulKhanna", email = "mehulkhanna277@gmail.com" }
+]
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "torch>=2.7",
+    "torchvision>=0.22",
+    "timm>=1.0",
+    "torchinfo",
+    "datasets>=3.0",
+    "huggingface-hub",
+    "pillow",
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "matplotlib",
+    "seaborn",
+    "tqdm",
+    "imagehash",
+    "grad-cam",
+    "onnx",
+    "onnxruntime",
+    "streamlit",
+    "jupyterlab",
+    "ipywidgets",
+    "nbconvert",
+]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[build-system]
+requires = ["uv_build>=0.12.22,<0.13.0"]
+build-backend = "uv_build"

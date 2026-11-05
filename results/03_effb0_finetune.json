@@ -1,0 +1,92 @@
+{
+  "config": {
+    "name": "03_effb0_finetune",
+    "model": "efficientnet_b0",
+    "epochs": 6,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "optimizer": "adamw",
+    "loss": "ce",
+    "batch_size": 64,
+    "img_size": 224,
+    "augment": "basic",
+    "freeze_backbone": false,
+    "act": "relu",
+    "seed": 0,
+    "extra": {}
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.6297278061780768,
+      "val_acc": 0.9674054758800521
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.08659432776039466,
+      "val_acc": 0.9732724902216427
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.0406185175330999,
+      "val_acc": 0.9804432855280313
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.021243185551914696,
+      "val_acc": 0.9908735332464146
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.008116410104169821,
+      "val_acc": 0.9882659713168188
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.006308332512465616,
+      "val_acc": 0.9921773142112125
+    }
+  ],
+  "best_val_acc": 0.9921773142112125,
+  "train_minutes": 3.545116591453552,
+  "track": "lab",
+  "params_total": 4043416,
+  "params_trainable": 4043416,
+  "n_train": 12343,
+  "lab_test": {
+    "n": 3781,
+    "accuracy": 0.9907431896323724,
+    "macro_f1": 0.9907787238278255,
+    "balanced_acc": 0.9907367009790315,
+    "mean_confidence": 0.9934964179992676,
+    "ece": 0.005060259090217765,
+    "accuracy_ci95": [
+      0.9875694260777572,
+      0.9936524728907696
+    ]
+  },
+  "field_test": {
+    "n": 236,
+    "accuracy": 0.25,
+    "macro_f1": 0.2286748916378546,
+    "balanced_acc": 0.2522019133130244,
+    "mean_confidence": 0.7236762642860413,
+    "ece": 0.47367630261233296,
+    "accuracy_ci95": [
+      0.19904661016949152,
+      0.3093220338983051
+    ]
+  },
+  "field_val": {
+    "n": 350,
+    "accuracy": 0.18571428571428572,
+    "macro_f1": 0.16089212010884818,
+    "balanced_acc": 0.21107870330436548,
+    "mean_confidence": 0.685193657875061,
+    "ece": 0.49947935325758797,
+    "accuracy_ci95": [
+      0.1457142857142857,
+      0.2257142857142857
+    ]
+  }
+}

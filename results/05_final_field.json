@@ -1,0 +1,102 @@
+{
+  "config": {
+    "name": "05_final_field",
+    "model": "mobilenetv3_large_100",
+    "epochs": 8,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "optimizer": "adamw",
+    "loss": "label_smoothing",
+    "batch_size": 64,
+    "img_size": 224,
+    "augment": "bg_field",
+    "freeze_backbone": false,
+    "act": "relu",
+    "seed": 0,
+    "extra": {}
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.719023975573088,
+      "val_acc": 0.6171428571428571
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.0307683497144464,
+      "val_acc": 0.6342857142857142
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.904111255260936,
+      "val_acc": 0.6285714285714286
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.8119077303953338,
+      "val_acc": 0.64
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.7605675289505407,
+      "val_acc": 0.6571428571428571
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.7299696497749864,
+      "val_acc": 0.6657142857142857
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.7142349648893925,
+      "val_acc": 0.6714285714285714
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.7090273263161643,
+      "val_acc": 0.66
+    }
+  ],
+  "best_val_acc": 0.6714285714285714,
+  "train_minutes": 5.757930088043213,
+  "track": "field",
+  "params_total": 4237900,
+  "params_trainable": 4237900,
+  "n_train": 18274,
+  "lab_test": {
+    "n": 3781,
+    "accuracy": 0.9796350171912193,
+    "macro_f1": 0.9807781512274119,
+    "balanced_acc": 0.9803003633809786,
+    "mean_confidence": 0.8743401765823364,
+    "ece": 0.10559302777706141,
+    "accuracy_ci95": [
+      0.9751388521555144,
+      0.9838667019307061
+    ]
+  },
+  "field_val": {
+    "n": 350,
+    "accuracy": 0.6714285714285714,
+    "macro_f1": 0.6618580494919707,
+    "balanced_acc": 0.6742310626727551,
+    "mean_confidence": 0.6339230537414551,
+    "ece": 0.0682414130653654,
+    "accuracy_ci95": [
+      0.62,
+      0.7200714285714285
+    ]
+  },
+  "field_test": {
+    "n": 236,
+    "accuracy": 0.6440677966101694,
+    "macro_f1": 0.6346138368792831,
+    "balanced_acc": 0.6423587729143284,
+    "mean_confidence": 0.6437798142433167,
+    "ece": 0.0890549448776548,
+    "accuracy_ci95": [
+      0.5805084745762712,
+      0.7033898305084746
+    ]
+  }
+}
