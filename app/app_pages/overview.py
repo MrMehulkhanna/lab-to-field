@@ -55,4 +55,4 @@ digraph {
 """, width="stretch")
 
 st.info("Use the **Explained step by step** menu at the top to walk through each part, with the charts that prove each claim. "
-        "**Diagnose a leaf** runs the real model; **Slides** has the presentation.", icon=":material/info:")
+        "**Diagnose a leaf** runs the real model.", icon=":material/info:")

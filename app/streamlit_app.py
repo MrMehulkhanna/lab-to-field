@@ -18,7 +18,6 @@ pages = {
     ],
     "Use it": [
         st.Page("app_pages/diagnose.py", title="Diagnose a leaf", icon=":material/photo_camera:"),
-        st.Page("app_pages/slides.py", title="Slides", icon=":material/slideshow:"),
     ],
 }
 page = st.navigation(pages, position="top")
