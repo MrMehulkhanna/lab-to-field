@@ -56,12 +56,16 @@ def gradcam(img224: Image.Image):
     return show_cam_on_image(rgb, heat, use_rgb=True)
 
 
-def predict(img: Image.Image, precision: str):
-    """Calibrated class probabilities for one photo."""
+def softmax(z):
+    e = np.exp(z - z.max())
+    return e / e.sum()
+
+
+def predict(img: Image.Image, precision: str, temperature: float | None = None):
+    """Class probabilities for one photo, calibrated with the temperature unless one is given."""
     x, img224 = preprocess(img)
-    logits = load_session(precision).run(None, {"image": x})[0][0] / T
-    p = np.exp(logits - logits.max())
-    return p / p.sum(), img224
+    logits = load_session(precision).run(None, {"image": x})[0][0]
+    return softmax(logits / (T if temperature is None else temperature)), img224
 
 
 def label_from_name(path: Path) -> str | None:
@@ -73,6 +77,7 @@ def label_from_name(path: Path) -> str | None:
 meta = load_meta()
 classes, T, threshold = meta["classes"], meta["temperature"], meta["abstain_threshold"]
 TEST_DIR = ROOT / "test_images"
+FILE_INFO = {"fp32": "17 MB · 64.4% field acc.", "fp16": "8.5 MB · 64.4% field acc.", "int8": "4.7 MB · 60.6% field acc."}
 st.caption("MobileNetV3 trained to work on real field photos. Runs on a CPU from an 8.5 MB ONNX file and says “not sure” instead of guessing.")
 
 left, right = st.columns([1, 1], gap="large")
@@ -146,4 +151,13 @@ elif file:
             st.image(heat, caption="Grad-CAM: red areas drove the decision", width="stretch", alt="Grad-CAM heatmap")
         else:
             st.caption("Grad-CAM heatmaps need the PyTorch checkpoint (local version); see page 6 for examples.")
-        st.caption(f"Abstain threshold {threshold:.2f} and temperature {T:.2f} were set on validation data.")
+        raw, _ = predict(img, precision, temperature=1.0)
+        with st.container(border=True):
+            st.markdown("**:material/calculate: How this answer was calculated**")
+            m = st.container(horizontal=True)
+            m.metric("Model file", precision.upper(), FILE_INFO[precision], delta_color="off")
+            m.metric("Temperature (T)", f"{T:.2f}", "set on validation photos", delta_color="off")
+            m.metric("“Not sure” below", f"{threshold:.0%}", "set on validation photos", delta_color="off")
+            st.markdown(f"Top guess **before** temperature scaling: {classes[int(raw.argmax())]} {raw.max():.1%} → "
+                        f"**after** (scores ÷ {T:.2f}): {classes[top[0]]} {conf:.1%}. "
+                        "Temperature changes how confident the model says it is, never which disease it picks.")
