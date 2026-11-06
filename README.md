@@ -53,7 +53,8 @@ notebooks/            one notebook per course module, each with strategy, concep
   05_training_choices        M5: optimizers, losses, activations, metrics, calibration, abstention, final model
   06_explain_and_export      Grad-CAM, ONNX export, FP16/INT8
 src/lab_to_field/     reusable code: config, data, models, train, metrics, calibrate, experiment
-app/streamlit_app.py  demo app (sample photos, upload or camera; top-3, "not sure", Grad-CAM)
+app/                  Streamlit website: overview, step-by-step explanation pages (1–6), diagnose, slides
+test_images/          put your own leaf photos here to test them in the app ("My test photos")
 scripts/              data download, notebook runner
 results/              metrics (JSON) and figures
 docs/                 presentation slides (.pptx)
