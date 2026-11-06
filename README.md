@@ -56,6 +56,7 @@ src/lab_to_field/     reusable code: config, data, models, train, metrics, calib
 app/streamlit_app.py  demo app (sample photos, upload or camera; top-3, "not sure", Grad-CAM)
 scripts/              data download, notebook runner
 results/              metrics (JSON) and figures
+docs/                 presentation slides (.pptx)
 ```
 
 ## Run it

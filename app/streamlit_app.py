@@ -71,7 +71,8 @@ st.title("🌿 Lab to Field: Crop Disease Check")
 st.caption("MobileNetV3 trained to work on real field photos, not only lab images. Runs offline on a CPU "
            "from an 8.5 MB ONNX file, and says “not sure” instead of guessing.")
 
-tab_predict, tab_results, tab_about = st.tabs(["Diagnose a leaf", "Project results", "How it works"])
+tab_predict, tab_slides, tab_results, tab_about = st.tabs(
+    ["Diagnose a leaf", "Presentation", "Project results", "How it works"])
 
 with tab_predict:
     left, right = st.columns([1, 1])
@@ -117,6 +118,19 @@ with tab_predict:
                 st.caption("Grad-CAM heatmaps need the PyTorch checkpoint (local version); "
                            "see the Project results tab for examples.")
             st.caption(f"Abstain threshold {threshold:.2f} and temperature {T:.2f} were set on validation data.")
+
+with tab_slides:
+    slides = sorted((ROOT / "app" / "slides").glob("slide-*.jpg"))
+    notes = json.loads((ROOT / "app" / "slides" / "notes.json").read_text())
+    n = st.slider("Slide", 1, len(slides), 1)
+    st.image(str(slides[n - 1]), width="stretch", caption=notes[n - 1]["title"])
+    with st.container(border=True):
+        st.markdown("**Explanation**")
+        st.write(notes[n - 1]["notes"])
+    deck = ROOT / "docs" / "Lab_to_Field_presentation.pptx"
+    st.download_button("Download the presentation (.pptx)", deck.read_bytes(), file_name=deck.name,
+                       mime="application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                       icon=":material/download:")
 
 with tab_results:
     figs = [("01_lab_vs_field.png", "Lab photos vs field photos"), ("02_gap.png", "The lab-to-field gap (scratch CNN)"),
